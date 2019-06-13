@@ -1,17 +1,24 @@
 {
    "name": "Minha Primeira Extensão",
-   "version": "1.2.2",
+   "version": "0.1.2.2",
    "manifest_version": 2,
    "description": "Minha primeira extensão",
    "permissions":[
 	"activeTab",
 	"tabs",
-	"http://*/"
+	"https://sigteste2.ufabc.int.br/*"
    ],
    "browser_action":{
-      "default_icon": "icon16.png"
+      "default_icon": "icon16.png",
+	  "default_popup": "popup_v2.html"
    },
    "background":{
-		"scripts":["javascript2.js"]
-   }
+		"scripts":["javascript2.js"]		
+   },   
+   "content_scripts":[
+			{
+				"matches": ["https://sigteste2.ufabc.int.br/*"],
+				"js":["content-script.js"]
+			}
+	]
 }
