@@ -6,7 +6,7 @@ var c1 = setInterval(testContentScript,5000);
 function testContentScript(){
 	/*var p = document.getElementById("idFormDadosEntradaSaida:horaEntrada").value;*/
 	sendMsg();
-	alert(x);
+	alert("console");
 	/*if(x == 'back'){
 		alert("forward");
 		
@@ -19,11 +19,11 @@ function testContentScript(){
 }
 
 function handleResponse(message){
-	x="${message.response}";
+	console.log(`${message.response}`);
 }
 
 function handleError(error){
-	x='Error: ${error}';
+	console.log(`Error: ${error}`);
 }
 
 function sendMsg(){
