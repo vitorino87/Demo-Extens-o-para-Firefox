@@ -1,26 +1,23 @@
-var hora = ['09','13','14','18'];
-var minuto = ['00'];
-var b = 1;
-var tiago = "forward";
+/*var hora = ['09','13','14','18'];
+var minuto = ['00'];*/
+var check = true;
 
-/*var c1 = setInterval(testContentScript,3000);*/
-
-function myFunction(){
+/*function myFunction(){
 	chrome.tabs.executeScript(
 		{
-			code: 'document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "16:00"' /*serve para adicionar "14:30" no componente especificado */		
+			code: 'document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "16:00"' /*serve para adicionar "14:30" no componente especificado 		
 		}
 	);
 	
 	chrome.tabs.executeScript(
 		{
-			code: 'document.getElementById("idFormDadosEntradaSaida:horaSaida1").value= "16:30"' /*serve para adicionar "14:30" no componente especificado */		
+			code: 'document.getElementById("idFormDadosEntradaSaida:horaSaida1").value= "16:30"' /*serve para adicionar "14:30" no componente especificado 		
 		}
 	);
 	
 	chrome.tabs.executeScript(
 		{
-			code: 'document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()' /*simula um clique no botão capturado*/
+			code: 'document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()' /*simula um clique no botão capturado
 		}
 	);
 	
@@ -33,12 +30,12 @@ function myFunction(){
 	
 	/*chrome.tabs.reload(); /*serve para atualizar a página*/
 	/*chrome.tabs.executeScript(
-		null, {file:"javascript_injetado.js"});*/
-}
+		null, {file:"javascript_injetado.js"});
+}*/
 
-function myTimer(){
+/*function myTimer(){
 	/*setInterval(addTime(),60000);	/*função para */
-	/*var c1 = setInterval(atualizarP,3000);	*/
+	/*var c1 = setInterval(atualizarP,3000);	
 }
 
 function addTime(){
@@ -49,14 +46,14 @@ function addTime(){
 			
 		}
 	}	
-}
+}*/
 
-function atualizarP(){
+/*function atualizarP(){
 	/*chrome.tabs.executeScript(
 		{				
 			code: 'document.getElementById("idFormDadosEntradaSaida").submit()' /*serve para submeter o form idFormDadosEntradaSaida
 		}
-	);*/
+	);
 	
 	browser.tabs.executeScript(
 	{
@@ -67,28 +64,38 @@ function atualizarP(){
 	
 	/*chrome.tabs.reload();
 	/*history.back();*/
-	/*window.history.forward();*/
+	/*window.history.forward();
 	chrome.runtime.reload();	
 }
 
 document.addEventListener('DOMContentLoaded',function(){
 	document.querySelector('button').addEventListener('click', testContentScript);	
-});
+});*/
 
-function testContentScript(){
+/*function testContentScript(){
 	/*var a = 1;
 	chrome.tabs.executeScript(
 		{
 			code: 'document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "'+a+'"' /*serve para adicionar "14:30" no componente especificado 
 		}
 	);
-	b = a;*/
-	/*chrome.tabs.reload();*/
-	/*chrome.runtime.reload();*/
-}
+	b = a;
+	/*chrome.tabs.reload();
+	/*chrome.runtime.reload();
+}*/
 
 function handleMessage(request, sender, sendResponse){
-	sendResponse({"response": "ok"});
+	if(check){
+		check=false;
+		sendResponse({"response": "back"});
+	}else{
+		check=true;
+		sendResponse({"response": "forward"});
+	}
+	/*sendResponse({"response": "ok"});*/
+	
 }
 
 browser.runtime.onMessage.addListener(handleMessage);
+
+/*IMPORTANTE: NÃO ESQUEÇA DE HABILITAR A FUNCIONALIDADE "Minimize memory usage" in about:memory*/

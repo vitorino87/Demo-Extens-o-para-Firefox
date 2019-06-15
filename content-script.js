@@ -1,42 +1,38 @@
-var b = true;
-var x;
-var c1 = setInterval(testContentScript,5000);
-/*var c2 = setInterval(testContentScript2,11000);*/
+var c1 = setInterval(testContentScript,10000);
 
 function testContentScript(){
 	/*var p = document.getElementById("idFormDadosEntradaSaida:horaEntrada").value;*/
 	sendMsg();
-	alert("console");
+	/*alert("console");*/
+	/*x="";
+	
 	/*if(x == 'back'){
-		alert("forward");
+		alert("forward");*/
 		
-		windows.history.forward();
+		/*window.history.forward();/*
 	}
 	if(x == 'forward'){
 		alert("back!");
-		window.history.back();
+		window.history.back();/*
 	}*/
 }
 
-function handleResponse(message){
-	console.log(`${message.response}`);
+function handleResponse(message){	
+	var x = `${message.response}`;
+	if(x == "back"){
+		window.location.href = "/sigrh/servidor/portal/servidor.jsf";
+	}
+	if(x == "forward"){
+		document.getElementById("painelAcessoDadosServidor:linkSolicitacaoEletronica").click();
+	}
+	console.log(x);					
 }
 
-function handleError(error){
+function handleError(error){	
 	console.log(`Error: ${error}`);
 }
 
 function sendMsg(){
 	var sending = browser.runtime.sendMessage({"content": ""});
 	sending.then(handleResponse,handleError);
-}
-
-
-
-function notify(message){
-	x = '${message.msg}';
-}
-
-function testContentScript2(){
-	
 }
