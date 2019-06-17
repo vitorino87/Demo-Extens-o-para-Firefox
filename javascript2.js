@@ -1,6 +1,14 @@
 /*var hora = ['09','13','14','18'];
 var minuto = ['00'];*/
 var check = true;
+var min = randomizar();
+var minLunch = randomizar();
+var d = new Date();
+var minAtualizar = d.getMinutes();
+while(minAtualizar == min || minAtualizar == minLunch || minAtualizar+1 == min || minAtualizar+1 == minLunch){
+	min = randomizar();
+	minLunch = randomizar();
+}
 
 /*function myFunction(){
 	chrome.tabs.executeScript(
@@ -34,8 +42,8 @@ var check = true;
 }*/
 
 /*function myTimer(){
-	/*setInterval(addTime(),60000);	/*função para */
-	/*var c1 = setInterval(atualizarP,3000);	
+	setInterval(addTime(),60000);	função para 
+	var c1 = setInterval(atualizarP,3000);	
 }
 
 function addTime(){
@@ -85,17 +93,38 @@ document.addEventListener('DOMContentLoaded',function(){
 }*/
 
 function handleMessage(request, sender, sendResponse){
-	if(check){
-		check=false;
-		sendResponse({"response": "back"});
-	}else{
-		check=true;
-		sendResponse({"response": "forward"});
+	if(`${request.content}`=="atualizar"){
+		if(check){
+			check=false;
+			sendResponse({"response": "back"});
+		}else{
+			check=true;
+			sendResponse({"response": "forward"});
+		}
 	}
-	/*sendResponse({"response": "ok"});*/
-	
+	if(`${request.content}`=="minutes"){		
+		sendResponse({minutes: min});
+	}
+	if(`${request.content}`=="minutesLunch"){
+		sendResponse({minutesLunch: minLunch});
+	}
+	if(`${request.content}`=="minutesReload"){
+		sendResponse({minutesReload: minAtualizar});
+	}
+	if(`${request.content}`=="all"){
+		sendResponse({minutesReload: minAtualizar,
+		minutesLunch: minLunch, minutes: min});
+	}
 }
 
 browser.runtime.onMessage.addListener(handleMessage);
+
+function randomizar(){
+	var x = Math.floor((Math.random() * 100) + 1);
+	while(x>30){
+		x = Math.floor((Math.random() * 100) + 1);
+	}
+	return x;
+}
 
 /*IMPORTANTE: NÃO ESQUEÇA DE HABILITAR A FUNCIONALIDADE "Minimize memory usage" in about:memory*/
