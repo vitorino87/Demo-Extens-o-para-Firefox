@@ -4,7 +4,10 @@ var check = true;
 var min = randomizar();
 var minLunch = randomizar();
 var d = new Date();
-var minAtualizar = d.getMinutes();
+var minAtualizar = Number(d.getMinutes())-1;
+if(minAtualizar<0){
+	minAtualizar = 59;
+}
 while(minAtualizar == min || minAtualizar == minLunch || minAtualizar+1 == min || minAtualizar+1 == minLunch){
 	min = randomizar();
 	minLunch = randomizar();

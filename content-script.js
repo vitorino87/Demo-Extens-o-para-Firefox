@@ -28,7 +28,7 @@ function handleResponse(message){
 		window.location.href = "/sigrh/servidor/portal/servidor.jsf";
 	}
 	if(x == "forward"){
-		document.getElementById("painelAcessoDadosServidor:linkSolicitacaoEletronica").click();
+		document.getElementById("painelAcessoDadosServidor:linkPontoEletronicoAntigo").click();
 	}		
 	min = `${message.minutes}`;
 	minLunch = `${message.minutesLunch}`;
@@ -51,6 +51,9 @@ function atualizarPag(){
 	var d = new Date;
 	var m = Number(d.getMinutes());
 	var k = 1*(minReload) + 1;
+	if(k>59){
+		k=0;
+	}
 	console.log(m);
 	console.log(k);
 	if(Number(minReload) == m || k == m){

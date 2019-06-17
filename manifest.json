@@ -6,7 +6,7 @@
    "permissions":[
 	"activeTab",
 	"tabs",
-	"https://sigteste.ufabc.edu.br/*"
+	"https://sigteste2.ufabc.int.br/*"
    ],
    "browser_action":{
       "default_icon": "icon16.png",
@@ -17,7 +17,7 @@
    },   
    "content_scripts":[
 			{
-				"matches": ["https://sigteste.ufabc.edu.br/*"],
+				"matches": ["https://sigteste2.ufabc.int.br/*"],
 				"js":["content-script.js"]
 			}
 	]
