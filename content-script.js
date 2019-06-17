@@ -102,21 +102,21 @@ function capturarHorario() {
 
 function registrarEntrada(m){
 	document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "10:" + m;
-	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()
+	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarEntrada").click()
 }
 
 function registrarAlmoco(m){
-	document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "13:" + m;
+	document.getElementById("idFormDadosEntradaSaida:horaSaida1").value= "13:" + m;
 	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()
 }
 
 function registrarAlmocoRetorno(m){
 	document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "14:" + m;
-	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()
+	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarEntrada").click()
 }
 
 function registrarSaida(m){
-	document.getElementById("idFormDadosEntradaSaida:horaEntrada").value= "19:" + m;
+	document.getElementById("idFormDadosEntradaSaida:horaSaida1").value= "19:" + m;
 	document.getElementById("idFormDadosEntradaSaida:idBtnRegistrarSaida").click()
 }
 
