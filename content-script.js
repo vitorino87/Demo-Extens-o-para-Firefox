@@ -1,9 +1,24 @@
+var d = new Date();
+//var r = checkSeconds(d);
+console.log("Seconds global: "+d.getSeconds());
+console.log("URL: "+window.location.pathname);
 var c1 = setInterval(atualizarPag,60000);
 var c2 = setInterval(manipularRegistro,60000);
 var min;
 var minLunch;
 var minReload;
 var c3 = setTimeout(testOne,1000);
+var c4 = setInterval(checarSegundos,60000);
+
+function checkSeconds(d){
+	var r = 0;
+	var s = d.getSeconds();	
+	console.log("Second: "+s);
+	if(s > 40){
+		var r = 61 - s;	
+	}
+	return r;
+}
 
 /*function testContentScript(){
 	var p = document.getElementById("idFormDadosEntradaSaida:horaEntrada").value;
@@ -21,6 +36,17 @@ var c3 = setTimeout(testOne,1000);
 		window.history.back();
 	}
 }*/
+
+function checarSegundos(){
+	var date = new Date();
+	console.log("Seconds checarSegundos: "+date.getSeconds());
+	if(Number(date.getSeconds())>40){
+		console.log("Seconds NUMBER: "+date.getSeconds());
+		var y = getMsg("atualizar");
+	}else if(String(window.location.pathname)==`/sigrh/servidor/portal/servidor.jsf`){
+		document.getElementById("painelAcessoDadosServidor:linkPontoEletronicoAntigo").click();
+	}
+}
 
 function handleResponse(message){	
 	var x = `${message.response}`;
@@ -54,8 +80,9 @@ function atualizarPag(){
 	if(k>59){
 		k=0;
 	}
-	console.log(m);
-	console.log(k);
+	console.log("Minuto atual: "+m);
+	console.log("Minuto de atualização anterior: "+minReload);
+	console.log("Minuto de atualização posterior: "+k);
 	if(Number(minReload) == m || k == m){
 		var y = getMsg("atualizar");	
 	}
